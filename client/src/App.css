@@ -1,38 +1,381 @@
-.App {
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f5f7fa;
+  color: #333;
+  transition: background-color 0.3s, color 0.3s;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body.dark {
+  background-color: #1a1a2e;
+  color: #e0e0e0;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Navbar - Laptop First */
+.navbar {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+}
+
+.nav-brand h1 {
+  font-size: 28px;
+  font-weight: 800;
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+.nav-controls {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.theme-toggle,
+.logout-btn {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  background-color: rgba(255, 255, 255, 0.15);
+  color: white;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.theme-toggle:hover,
+.logout-btn:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.theme-toggle:active,
+.logout-btn:active {
+  transform: translateY(0);
+}
+
+.auth-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  min-height: 100vh;
+}
+
+.auth-toggle-footer {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.auth-toggle-footer p {
   color: white;
+  font-size: 14px;
 }
 
-.App-link {
-  color: #61dafb;
+.auth-toggle-footer button {
+  background: none;
+  border: none;
+  color: #ffd700;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 14px;
+  text-decoration: underline;
+  margin-left: 5px;
+  transition: color 0.3s;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.auth-toggle-footer button:hover {
+  color: #ffed4e;
+}
+
+/* App Container - Laptop First */
+.app-container {
+  padding: 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Dashboard Styles - Laptop First */
+.dashboard {
+  padding: 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.dashboard h1 {
+  color: #333;
+  margin-bottom: 40px;
+  font-size: 36px;
+  font-weight: 700;
+  grid-column: 1 / -1;
+}
+
+body.dark .dashboard h1 {
+  color: #fff;
+}
+
+/* Chart Container - Laptop First */
+.chart-container {
+  margin-bottom: 40px;
+  padding: 30px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  grid-column: 1 / -1;
+}
+
+body.dark .chart-container {
+  background-color: #2d2d44;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Form Container - Laptop First */
+.form-container {
+  margin-bottom: 40px;
+  grid-column: 1;
+}
+
+.form-container h2 {
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+body.dark .form-container h2 {
+  color: #fff;
+}
+
+/* Transaction List - Laptop First */
+.transaction-list {
+  margin-bottom: 40px;
+  grid-column: 2;
+}
+
+.transaction-list h2 {
+  margin-bottom: 25px;
+  color: #333;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+body.dark .transaction-list h2 {
+  color: #fff;
+}
+
+/* Alerts - Laptop First */
+.alerts {
+  background: linear-gradient(135deg, #ffe5e5, #fff0e6);
+  border-left: 5px solid #dc3545;
+  padding: 25px;
+  border-radius: 12px;
+  margin-top: 40px;
+  grid-column: 1 / -1;
+}
+
+body.dark .alerts {
+  background: linear-gradient(135deg, #4a2a2a, #5a3a2a);
+  border-left-color: #ff6b6b;
+}
+
+.alerts h3 {
+  color: #dc3545;
+  margin-bottom: 18px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+body.dark .alerts h3 {
+  color: #ff6b6b;
+}
+
+.alert-item {
+  color: #d32f2f;
+  margin-bottom: 12px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 8px;
+  font-size: 15px;
+  border-left: 3px solid #dc3545;
+}
+
+body.dark .alert-item {
+  background: rgba(255, 107, 107, 0.1);
+  color: #ff8a8a;
+  border-left-color: #ff6b6b;
+}
+
+/* Responsive Design - Laptop First Approach */
+/* Base styles optimized for laptops and desktops (1024px+) */
+
+/* Tablet Styles (768px - 1023px) */
+@media (max-width: 1023px) {
+  .navbar {
+    padding: 12px 20px;
   }
-  to {
-    transform: rotate(360deg);
+
+  .nav-brand h1 {
+    font-size: 22px;
+  }
+
+  .nav-controls {
+    gap: 12px;
+  }
+
+  .theme-toggle,
+  .logout-btn {
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+
+  .dashboard {
+    padding: 20px;
+    max-width: 900px;
+  }
+
+  .dashboard h1 {
+    font-size: 28px;
+    margin-bottom: 25px;
+  }
+
+  .form-container form {
+    gap: 12px;
+  }
+
+  .form-group {
+    min-width: 180px;
+  }
+
+  .chart-container {
+    padding: 15px;
+  }
+
+  .transaction-list h3 {
+    font-size: 18px;
+  }
+
+  .transaction-item {
+    padding: 12px;
+  }
+
+  .transaction-amount {
+    font-size: 16px;
+  }
+
+  .alerts {
+    padding: 15px;
   }
 }
+
+/* Mobile Styles (up to 767px) */
+@media (max-width: 767px) {
+  .navbar {
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px 20px;
+  }
+
+  .nav-brand h1 {
+    font-size: 20px;
+  }
+
+  .nav-controls {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .dashboard {
+    padding: 15px;
+    max-width: none;
+  }
+
+  .dashboard h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .form-container form {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .form-group {
+    min-width: 100%;
+  }
+
+  .form-group button {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+
+  .chart-container {
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+
+  .transaction-list {
+    margin-bottom: 20px;
+  }
+
+  .transaction-list h3 {
+    font-size: 16px;
+    margin-bottom: 15px;
+  }
+
+  .transaction-item {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+    margin-bottom: 8px;
+  }
+
+  .transaction-info {
+    margin-bottom: 8px;
+  }
+
+  .transaction-amount {
+    font-size: 14px;
+    align-self: flex-end;
+  }
+
+  .alerts {
+    padding: 12px;
+    margin-top: 20px;
+  }
+
+  .alerts h3 {
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+
+  .alert-item {
+    padding: 8px;
+    font-size: 13px;
+  }
+}
+
